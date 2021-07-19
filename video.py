@@ -31,7 +31,7 @@ import requests
 class CaptureVideo:
     WIDTH = 640  #default 480p
     HEIGHT = 480
-    def __init__(self, fps, resolution, path):
+    def __init__(self, fps, resolution, path):  # path la chi dinh video - 0 la webcam laptop
         self.fps = fps
         self.path = path
         self.resolution = resolution
@@ -57,7 +57,7 @@ class CaptureVideo:
             self.WIDTH = 3840
             self.HEIGHT = 2160
     
-    
+    #datapath la path de luu tru video
     def StreamVideo(self, datapath):
         # FILE_OUTPUT = '/home/lctuan/AI/output.avi'
         if os.path.isfile(datapath):
@@ -114,11 +114,11 @@ class CaptureVideo:
                                         , font, size, (255, 255, 255), 1, cv2.LINE_AA)
                 frames = cv2.putText(frame, strLocation, (int(size_frameWidth*2/48), int(size_frameHeight*46/48))
                                         , font, size, (255,255,255), 1, cv2.LINE_AA)
-                    # save.write(cv2.resize(frames,output_size))
+                save.write(cv2.resize(frames,output_size))
                     # ims = cv2.resize(frame, (self.WIDTH, self.HEIGHT))
                 cv2.imshow('frame', frames)  #show frame   
             # time.sleep(1./frame_rate)
-                # cv2.imwrite('/home/lctuan/AI/VN0001_' + strFile, frames)
+                cv2.imwrite('/home/lctuan/AI/VN0001_' + strFile, frames) # save img
             k = cv2.waitKey(1)
             if (k == ord('q')):
                 break
